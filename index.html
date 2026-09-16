@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>🥺</title>
+    <title>For You 🥺❤️</title>
 
     <style>
 
@@ -16,33 +17,42 @@
         body {
             margin: 0;
             padding: 0;
+
             width: 100%;
             height: 100%;
+
             overflow: hidden;
-            font-family: Arial, sans-serif;
+
+            font-family: Arial, Helvetica, sans-serif;
         }
 
-        /* =========================
-           الصفحة
-        ========================= */
+
+        /* =========================================
+           GENERAL PAGE
+        ========================================= */
 
         .page {
-            position: relative;
+            position: fixed;
+
+            inset: 0;
+
             width: 100vw;
-            height: 100vh;
+            height: 100dvh;
+
             overflow: hidden;
-            background: black;
+
+            background: #000;
         }
 
 
-        /* =========================
-           الصور
-        ========================= */
+        /* =========================================
+           BACKGROUND IMAGE
+        ========================================= */
 
         .background {
             position: absolute;
-            top: 0;
-            left: 0;
+
+            inset: 0;
 
             width: 100%;
             height: 100%;
@@ -50,130 +60,279 @@
             object-fit: cover;
 
             z-index: 0;
+
+            animation: slowZoom 12s ease-in-out infinite alternate;
         }
 
 
-        /* طبقة شفافة فوق الصورة */
+        @keyframes slowZoom {
+
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.04);
+            }
+
+        }
+
+
+        /* =========================================
+           DARK / ROMANTIC OVERLAY
+        ========================================= */
 
         .overlay {
             position: absolute;
-            top: 0;
-            left: 0;
 
-            width: 100%;
-            height: 100%;
-
-            background: rgba(0, 0, 0, 0.25);
+            inset: 0;
 
             z-index: 1;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    rgba(0, 0, 0, 0.12),
+                    rgba(0, 0, 0, 0.30),
+                    rgba(0, 0, 0, 0.48)
+                );
         }
 
 
-        /* =========================
-           المحتوى
-        ========================= */
+        /* =========================================
+           SOFT LIGHT
+        ========================================= */
+
+        .light {
+            position: absolute;
+
+            width: 350px;
+            height: 350px;
+
+            border-radius: 50%;
+
+            background: rgba(255, 210, 220, 0.12);
+
+            filter: blur(70px);
+
+            top: 10%;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            z-index: 1;
+
+            pointer-events: none;
+        }
+
+
+        /* =========================================
+           MAIN CONTENT
+        ========================================= */
 
         .content {
             position: absolute;
+
+            z-index: 5;
 
             top: 50%;
             left: 50%;
 
             transform: translate(-50%, -50%);
 
-            width: 90%;
-            max-width: 600px;
+            width: min(90%, 600px);
 
             text-align: center;
-
-            color: white;
-
-            text-shadow:
-                0 2px 8px rgba(0, 0, 0, 0.8);
-
-            z-index: 2;
         }
 
 
-        /* =========================
-           السؤال
-        ========================= */
+        /* =========================================
+           GLASS CARD
+        ========================================= */
+
+        .card {
+            padding: 30px 25px 28px;
+
+            border-radius: 28px;
+
+            background: rgba(0, 0, 0, 0.28);
+
+            border: 1px solid rgba(255, 255, 255, 0.22);
+
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+
+            box-shadow:
+                0 15px 45px rgba(0, 0, 0, 0.30);
+
+            animation: cardAppear 1s ease;
+        }
+
+
+        @keyframes cardAppear {
+
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.96);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+
+        }
+
+
+        /* =========================================
+           SMALL HEART
+        ========================================= */
+
+        .heart {
+            font-size: 30px;
+
+            margin-bottom: 12px;
+
+            animation: heartbeat 1.8s infinite;
+        }
+
+
+        @keyframes heartbeat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.18);
+            }
+
+        }
+
+
+        /* =========================================
+           QUESTION
+        ========================================= */
 
         .question {
-            font-size: clamp(30px, 7vw, 55px);
+            color: white;
+
+            font-size: clamp(30px, 7vw, 54px);
 
             font-weight: bold;
 
-            margin-bottom: 35px;
+            line-height: 1.2;
+
+            margin-bottom: 30px;
+
+            text-shadow:
+                0 3px 15px rgba(0, 0, 0, 0.8);
         }
 
 
-        /* =========================
-           الأزرار
-        ========================= */
+        /* =========================================
+           BUTTON AREA
+           
+           IMPORTANT:
+           This area has a fixed size.
+           Therefore Yes will NEVER move.
+        ========================================= */
 
         .buttons {
-            display: flex;
+            position: relative;
 
-            justify-content: center;
-            align-items: center;
+            width: 260px;
+            height: 58px;
 
-            gap: 25px;
+            margin: 0 auto;
         }
 
 
+        /* =========================================
+           ALL BUTTONS
+        ========================================= */
+
         button {
+            position: absolute;
+
+            top: 0;
+
+            height: 52px;
+
+            min-width: 105px;
+
+            padding: 0 25px;
+
             border: none;
 
-            border-radius: 15px;
+            border-radius: 16px;
 
-            padding: 14px 35px;
-
-            font-size: 20px;
+            font-size: 18px;
 
             font-weight: bold;
 
             cursor: pointer;
 
+            color: white;
+
             box-shadow:
-                0 5px 15px rgba(0, 0, 0, 0.35);
+                0 7px 20px rgba(0, 0, 0, 0.35);
 
             transition:
-                transform 0.15s ease;
+                transform 0.15s ease,
+                box-shadow 0.15s ease;
         }
 
 
         button:hover {
-            transform: scale(1.08);
+            transform: scale(1.07);
+
+            box-shadow:
+                0 10px 25px rgba(0, 0, 0, 0.45);
         }
 
 
-        /* زر Yes */
+        /* =========================================
+           YES BUTTON
+           
+           It NEVER changes position.
+        ========================================= */
 
         #yes {
-            background: #4caf50;
+            left: 0;
 
-            color: white;
+            background:
+                linear-gradient(
+                    135deg,
+                    #55c878,
+                    #2e9f55
+                );
         }
 
 
-        /* زر No */
+        /* =========================================
+           NO BUTTON
+           
+           Starts beside Yes.
+           After clicking, becomes fixed to screen.
+        ========================================= */
 
         #no {
-            background: #f44336;
+            right: 0;
 
-            color: white;
-
-            /*
-            في البداية يكون بجانب Yes
-            ولا نضع position هنا
-            */
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff6868,
+                    #dc3030
+                );
         }
 
 
-        /* =========================
-           الصفحة الثانية
-        ========================= */
+        /* =========================================
+           SECOND PAGE
+        ========================================= */
 
         #secondPage {
             display: none;
@@ -181,80 +340,219 @@
 
 
         .message {
-            font-size: clamp(24px, 5vw, 42px);
+            color: white;
+
+            font-size: clamp(25px, 5vw, 43px);
 
             font-weight: bold;
 
             line-height: 1.4;
 
-            background: rgba(0, 0, 0, 0.35);
+            padding: 25px;
 
-            padding: 20px 25px;
+            border-radius: 25px;
 
-            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.30);
 
-            backdrop-filter: blur(3px);
+            border: 1px solid rgba(255, 255, 255, 0.20);
+
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+
+            text-shadow:
+                0 3px 12px rgba(0, 0, 0, 0.8);
         }
 
 
-        /* =========================
-           الهاتف
-        ========================= */
+        /* =========================================
+           FLOATING HEARTS
+        ========================================= */
+
+        .floating-heart {
+            position: absolute;
+
+            z-index: 3;
+
+            color: rgba(255, 255, 255, 0.75);
+
+            font-size: 18px;
+
+            pointer-events: none;
+
+            animation: floatHeart 6s linear infinite;
+        }
+
+
+        .heart1 {
+            left: 12%;
+            bottom: -30px;
+
+            animation-delay: 0s;
+        }
+
+
+        .heart2 {
+            left: 78%;
+            bottom: -30px;
+
+            animation-delay: 2s;
+        }
+
+
+        .heart3 {
+            left: 45%;
+            bottom: -30px;
+
+            animation-delay: 4s;
+        }
+
+
+        @keyframes floatHeart {
+
+            0% {
+                transform:
+                    translateY(0)
+                    rotate(0deg);
+
+                opacity: 0;
+            }
+
+            15% {
+                opacity: 0.8;
+            }
+
+            85% {
+                opacity: 0.7;
+            }
+
+            100% {
+                transform:
+                    translateY(-110vh)
+                    rotate(25deg);
+
+                opacity: 0;
+            }
+
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
 
         @media (max-width: 500px) {
 
+            .card {
+                padding: 25px 18px;
+            }
+
             .buttons {
-                gap: 15px;
+                width: 245px;
             }
 
             button {
-                padding: 12px 28px;
+                min-width: 100px;
 
-                font-size: 18px;
+                padding: 0 20px;
+
+                font-size: 17px;
             }
+
         }
 
     </style>
+
 </head>
 
 
 <body>
 
 
-    <!-- ==================================
-         الصفحة الأولى
-    ================================== -->
+    <!-- =========================================
+         FIRST PAGE
+    ========================================= -->
 
-    <div class="page" id="firstPage">
+    <div
+        class="page"
+        id="firstPage"
+    >
 
-        <!-- الصورة الأولى -->
+
+        <!-- First / older image -->
 
         <img
             class="background"
             src="IMG_5757.jpeg"
-            alt="Photo"
+            alt="Our photo"
         >
+
+
+        <!-- Dark overlay -->
 
         <div class="overlay"></div>
 
 
+        <!-- Soft light -->
+
+        <div class="light"></div>
+
+
+        <!-- Floating hearts -->
+
+        <div class="floating-heart heart1">
+            ♡
+        </div>
+
+        <div class="floating-heart heart2">
+            ♡
+        </div>
+
+        <div class="floating-heart heart3">
+            ♡
+        </div>
+
+
+        <!-- Main content -->
+
         <div class="content">
 
-            <div class="question">
-                U forgive me 🥺?
-            </div>
+            <div class="card">
 
 
-            <div class="buttons">
+                <!-- Heart -->
 
-                <button id="yes">
-                    Yes
-                </button>
+                <div class="heart">
+                    🥺❤️
+                </div>
 
 
-                <button id="no">
-                    No
-                </button>
+                <!-- Question -->
+
+                <div class="question">
+                    U forgive me 🥺?
+                </div>
+
+
+                <!-- Buttons -->
+
+                <div class="buttons">
+
+
+                    <!-- YES -->
+
+                    <button id="yes">
+                        Yes ❤️
+                    </button>
+
+
+                    <!-- NO -->
+
+                    <button id="no">
+                        No
+                    </button>
+
+
+                </div>
 
             </div>
 
@@ -264,28 +562,41 @@
 
 
 
-    <!-- ==================================
-         الصفحة الثانية
-    ================================== -->
+    <!-- =========================================
+         SECOND PAGE
+    ========================================= -->
 
-    <div class="page" id="secondPage">
+    <div
+        class="page"
+        id="secondPage"
+    >
 
-        <!-- الصورة الثانية -->
+
+        <!-- Second / newer image -->
 
         <img
             class="background"
             src="IMG_5756.jpeg"
-            alt="Photo"
+            alt="Our photo"
         >
+
 
         <div class="overlay"></div>
 
+
+        <div class="light"></div>
+
+
+        <!-- Second page content -->
 
         <div class="content">
 
             <div class="message" id="finalMessage">
 
-                <!-- ضع الرسالة هنا لاحقًا -->
+                <!--
+                    SEND ME YOUR MESSAGE
+                    AND I WILL PUT IT HERE
+                -->
 
             </div>
 
@@ -298,9 +609,9 @@
     <script>
 
 
-        /* =========================
-           العناصر
-        ========================= */
+        /* =========================================
+           ELEMENTS
+        ========================================= */
 
         const noButton =
             document.getElementById("no");
@@ -316,37 +627,47 @@
 
 
 
-        /* =========================
-           تحريك زر No
-        ========================= */
+        /* =========================================
+           MOVE NO BUTTON
+        ========================================= */
 
         function moveNoButton() {
 
+
             /*
-            نجعل الزر fixed بالنسبة
-            إلى شاشة الهاتف/الكمبيوتر
-            */
+             * From this point the No button
+             * is completely independent from
+             * the Yes button.
+             */
 
             noButton.style.position = "fixed";
 
 
             /*
-            نزيل أي transform
-            */
+             * Remove the original right position.
+             */
+
+            noButton.style.right = "auto";
+
+
+            /*
+             * Make sure transform does not
+             * move the button.
+             */
 
             noButton.style.transform = "none";
 
 
             /*
-            المسافة الآمنة من أطراف الشاشة
-            */
+             * Safe distance from screen edges.
+             */
 
-            const margin = 10;
+            const margin = 12;
 
 
             /*
-            معرفة حجم الزر الحقيقي
-            */
+             * Get actual button dimensions.
+             */
 
             const buttonWidth =
                 noButton.offsetWidth;
@@ -356,69 +677,94 @@
 
 
             /*
-            أقصى مكان مسموح للزر
-            */
+             * Available screen dimensions.
+             */
+
+            const screenWidth =
+                document.documentElement.clientWidth;
+
+            const screenHeight =
+                document.documentElement.clientHeight;
+
+
+            /*
+             * Calculate the maximum allowed
+             * X and Y coordinates.
+             */
 
             const maxX =
-                window.innerWidth -
+                screenWidth -
                 buttonWidth -
                 margin;
 
+
             const maxY =
-                window.innerHeight -
+                screenHeight -
                 buttonHeight -
                 margin;
 
 
             /*
-            اختيار مكان عشوائي
-            */
+             * Generate a random position.
+             */
 
             let randomX =
                 margin +
-                Math.random() * (maxX - margin);
+                Math.random() *
+                Math.max(0, maxX - margin);
 
 
             let randomY =
                 margin +
-                Math.random() * (maxY - margin);
+                Math.random() *
+                Math.max(0, maxY - margin);
 
 
             /*
-            التأكد 100% من أن الزر
-            لن يخرج خارج الشاشة
-            */
+             * FINAL SAFETY CHECK.
+             *
+             * This guarantees that the
+             * entire button stays inside
+             * the screen.
+             */
 
             randomX =
                 Math.max(
                     margin,
-                    Math.min(randomX, maxX)
+                    Math.min(
+                        randomX,
+                        maxX
+                    )
                 );
 
 
             randomY =
                 Math.max(
                     margin,
-                    Math.min(randomY, maxY)
+                    Math.min(
+                        randomY,
+                        maxY
+                    )
                 );
 
 
             /*
-            وضع الزر
-            */
+             * Put the button there.
+             */
 
             noButton.style.left =
                 randomX + "px";
 
             noButton.style.top =
                 randomY + "px";
+
         }
 
 
 
-        /* =========================
-           عند الضغط على No
-        ========================= */
+        /* =========================================
+           NO BUTTON - MOUSE
+        ========================================= */
 
         noButton.addEventListener(
             "click",
@@ -431,9 +777,9 @@
 
 
 
-        /* =========================
-           عند لمس No على الهاتف
-        ========================= */
+        /* =========================================
+           NO BUTTON - PHONE TOUCH
+        ========================================= */
 
         noButton.addEventListener(
             "touchstart",
@@ -444,30 +790,33 @@
                 moveNoButton();
 
             },
-            { passive: false }
+            {
+                passive: false
+            }
         );
 
 
 
-        /* =========================
-           زر Yes
-        ========================= */
+        /* =========================================
+           YES BUTTON
+        ========================================= */
 
         yesButton.addEventListener(
             "click",
             function () {
 
+
                 /*
-                إخفاء الصفحة الأولى
-                */
+                 * Hide first page.
+                 */
 
                 firstPage.style.display =
                     "none";
 
 
                 /*
-                إظهار الصفحة الثانية
-                */
+                 * Show second page.
+                 */
 
                 secondPage.style.display =
                     "block";
@@ -477,25 +826,28 @@
 
 
 
-        /* =========================
-           عند تغيير حجم الشاشة
-        ========================= */
+        /* =========================================
+           KEEP NO INSIDE SCREEN AFTER ROTATION
+        ========================================= */
 
         window.addEventListener(
             "resize",
             function () {
 
+
                 /*
-                إذا كان No قد هرب بالفعل،
-                نتأكد أنه ما زال داخل الشاشة
-                */
+                 * Only do this after No
+                 * has started moving.
+                 */
 
                 if (
                     noButton.style.position ===
                     "fixed"
                 ) {
 
-                    const margin = 10;
+
+                    const margin = 12;
+
 
                     const buttonWidth =
                         noButton.offsetWidth;
@@ -504,47 +856,56 @@
                         noButton.offsetHeight;
 
 
+                    const screenWidth =
+                        document.documentElement.clientWidth;
+
+                    const screenHeight =
+                        document.documentElement.clientHeight;
+
+
                     const maxX =
-                        window.innerWidth -
+                        screenWidth -
                         buttonWidth -
                         margin;
 
                     const maxY =
-                        window.innerHeight -
+                        screenHeight -
                         buttonHeight -
                         margin;
 
 
-                    let currentX =
+                    let x =
                         parseFloat(
                             noButton.style.left
                         ) || margin;
 
-                    let currentY =
+
+                    let y =
                         parseFloat(
                             noButton.style.top
                         ) || margin;
 
 
-                    currentX =
+                    x =
                         Math.max(
                             margin,
-                            Math.min(currentX, maxX)
+                            Math.min(x, maxX)
                         );
 
 
-                    currentY =
+                    y =
                         Math.max(
                             margin,
-                            Math.min(currentY, maxY)
+                            Math.min(y, maxY)
                         );
 
 
                     noButton.style.left =
-                        currentX + "px";
+                        x + "px";
 
                     noButton.style.top =
-                        currentY + "px";
+                        y + "px";
+
                 }
 
             }
@@ -552,5 +913,7 @@
 
     </script>
 
+
 </body>
+
 </html>
