@@ -11,7 +11,8 @@
             box-sizing: border-box;
         }
 
-        html, body {
+        html,
+        body {
             margin: 0;
             padding: 0;
             width: 100%;
@@ -25,61 +26,76 @@
             width: 100vw;
             height: 100vh;
             overflow: hidden;
-            background: #000;
+            background: black;
         }
 
         .background {
             position: absolute;
             inset: 0;
+
             width: 100%;
             height: 100%;
+
             object-fit: cover;
+
             z-index: 0;
         }
 
         .overlay {
             position: absolute;
             inset: 0;
+
             background: rgba(0, 0, 0, 0.25);
+
             z-index: 1;
         }
 
         .content {
             position: absolute;
-            z-index: 2;
+
             top: 50%;
             left: 50%;
+
             transform: translate(-50%, -50%);
 
             width: 90%;
             max-width: 600px;
 
             text-align: center;
+
             color: white;
 
-            text-shadow:
-                0 2px 8px rgba(0, 0, 0, 0.8);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+
+            z-index: 2;
         }
 
         .question {
             font-size: clamp(30px, 7vw, 55px);
+
             font-weight: bold;
+
             margin-bottom: 35px;
         }
 
         .buttons {
             display: flex;
+
             justify-content: center;
             align-items: center;
+
             gap: 25px;
         }
 
         button {
             border: none;
+
             border-radius: 15px;
+
             padding: 14px 35px;
 
             font-size: 20px;
+
             font-weight: bold;
 
             cursor: pointer;
@@ -89,45 +105,67 @@
             transition: transform 0.15s ease;
         }
 
-        #yes {
-            background: #4caf50;
-            color: white;
-        }
-
-        #no {
-            background: #f44336;
-            color: white;
-
-            position: fixed;
-            z-index: 10;
-        }
-
         button:hover {
             transform: scale(1.08);
         }
 
-        /* الصفحة الثانية */
+        #yes {
+            background: #4caf50;
 
+            color: white;
+        }
+
+        /* زر No في البداية يكون طبيعيًا بجانب Yes */
+        #no {
+            background: #f44336;
+
+            color: white;
+        }
+
+        /* الصفحة الثانية مخفية في البداية */
         #secondPage {
             display: none;
         }
 
         .message {
             font-size: clamp(24px, 5vw, 42px);
+
             font-weight: bold;
+
             line-height: 1.4;
 
             background: rgba(0, 0, 0, 0.35);
+
             padding: 20px 25px;
+
             border-radius: 20px;
+
             backdrop-filter: blur(3px);
+        }
+
+        /* تحسين شكل الأزرار على الشاشات الصغيرة */
+        @media (max-width: 500px) {
+
+            .buttons {
+                gap: 15px;
+            }
+
+            button {
+                padding: 12px 28px;
+
+                font-size: 18px;
+            }
         }
     </style>
 </head>
 
+
 <body>
 
+    <!-- ========================= -->
     <!-- الصفحة الأولى -->
+    <!-- ========================= -->
+
     <div class="page" id="firstPage">
 
         <!-- الصورة الأولى -->
@@ -139,12 +177,16 @@
 
         <div class="overlay"></div>
 
+
         <div class="content">
 
+            <!-- السؤال -->
             <div class="question">
                 U forgive me 🥺?
             </div>
 
+
+            <!-- الأزرار -->
             <div class="buttons">
 
                 <button id="yes">
@@ -158,10 +200,15 @@
             </div>
 
         </div>
+
     </div>
 
 
+
+    <!-- ========================= -->
     <!-- الصفحة الثانية -->
+    <!-- ========================= -->
+
     <div class="page" id="secondPage">
 
         <!-- الصورة الثانية -->
@@ -173,10 +220,12 @@
 
         <div class="overlay"></div>
 
+
         <div class="content">
 
+            <!-- الرسالة التي سنضعها لاحقًا -->
             <div class="message" id="finalMessage">
-                <!-- سأضع الرسالة هنا لاحقًا -->
+                
             </div>
 
         </div>
@@ -184,60 +233,137 @@
     </div>
 
 
+
     <script>
 
         const noButton = document.getElementById("no");
+
         const yesButton = document.getElementById("yes");
 
         const firstPage = document.getElementById("firstPage");
+
         const secondPage = document.getElementById("secondPage");
 
 
-        // جعل زر No يهرب إلى مكان عشوائي
+        /*
+        ========================================
+        زر No
+        ========================================
+        */
+
         function moveNoButton() {
 
+            /*
+            تحويل الزر إلى fixed
+            فقط بعد محاولة الضغط عليه
+            */
+
+            noButton.style.position = "fixed";
+
             const buttonWidth = noButton.offsetWidth;
+
             const buttonHeight = noButton.offsetHeight;
 
+
+            /*
+            حساب الحدود حتى لا يخرج الزر
+            خارج الشاشة
+            */
+
             const maxX = window.innerWidth - buttonWidth - 10;
+
             const maxY = window.innerHeight - buttonHeight - 10;
 
-            const randomX = Math.max(
-                10,
-                Math.random() * maxX
-            );
 
-            const randomY = Math.max(
-                10,
-                Math.random() * maxY
-            );
+            /*
+            اختيار مكان عشوائي
+            */
+
+            const randomX =
+                Math.max(10, Math.random() * maxX);
+
+            const randomY =
+                Math.max(10, Math.random() * maxY);
+
+
+            /*
+            وضع الزر في المكان الجديد
+            */
 
             noButton.style.left = randomX + "px";
+
             noButton.style.top = randomY + "px";
         }
 
 
-        // عند الضغط على No
+        /*
+        عند الضغط على No
+        */
+
         noButton.addEventListener("click", function () {
+
             moveNoButton();
+
         });
 
 
-        // عند الضغط على Yes
+        /*
+        ========================================
+        زر Yes
+        ========================================
+        */
+
         yesButton.addEventListener("click", function () {
 
+            /*
+            إخفاء الصفحة الأولى
+            */
+
             firstPage.style.display = "none";
+
+
+            /*
+            إظهار الصفحة الثانية
+            */
 
             secondPage.style.display = "block";
 
         });
 
 
-        // على الهاتف: إذا حاول لمس زر No
-        noButton.addEventListener("touchstart", function () {
+        /*
+        ========================================
+        دعم لمس الهاتف
+        ========================================
+        */
+
+        noButton.addEventListener("touchstart", function (event) {
+
+            /*
+            منع الضغط الطبيعي حتى يهرب الزر
+            */
+
+            event.preventDefault();
+
             moveNoButton();
+
         });
 
+
+        /*
+        منع الزر من الخروج من الشاشة
+        عند تغيير حجم الشاشة
+        */
+
+        window.addEventListener("resize", function () {
+
+            if (noButton.style.position === "fixed") {
+
+                moveNoButton();
+
+            }
+
+        });
 
     </script>
 
