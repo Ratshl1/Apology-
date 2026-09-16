@@ -2,10 +2,16 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>For You 🥺❤️</title>
+
 
     <style>
 
@@ -13,8 +19,10 @@
             box-sizing: border-box;
         }
 
+
         html,
         body {
+
             margin: 0;
             padding: 0;
 
@@ -27,11 +35,12 @@
         }
 
 
-        /* =========================================
-           GENERAL PAGE
-        ========================================= */
+        /* =====================================
+           PAGE
+        ===================================== */
 
         .page {
+
             position: fixed;
 
             inset: 0;
@@ -45,14 +54,16 @@
         }
 
 
-        /* =========================================
-           BACKGROUND IMAGE
-        ========================================= */
+        /* =====================================
+           IMAGE
+        ===================================== */
 
         .background {
+
             position: absolute;
 
-            inset: 0;
+            left: 0;
+            top: 0;
 
             width: 100%;
             height: 100%;
@@ -61,28 +72,29 @@
 
             z-index: 0;
 
-            animation: slowZoom 12s ease-in-out infinite alternate;
+            animation: zoom 14s ease-in-out infinite alternate;
         }
 
 
-        @keyframes slowZoom {
+        @keyframes zoom {
 
             from {
                 transform: scale(1);
             }
 
             to {
-                transform: scale(1.04);
+                transform: scale(1.035);
             }
 
         }
 
 
-        /* =========================================
-           DARK / ROMANTIC OVERLAY
-        ========================================= */
+        /* =====================================
+           IMAGE OVERLAY
+        ===================================== */
 
         .overlay {
+
             position: absolute;
 
             inset: 0;
@@ -92,18 +104,19 @@
             background:
                 linear-gradient(
                     to bottom,
-                    rgba(0, 0, 0, 0.12),
-                    rgba(0, 0, 0, 0.30),
-                    rgba(0, 0, 0, 0.48)
+                    rgba(0,0,0,0.08),
+                    rgba(0,0,0,0.25),
+                    rgba(0,0,0,0.50)
                 );
         }
 
 
-        /* =========================================
+        /* =====================================
            SOFT LIGHT
-        ========================================= */
+        ===================================== */
 
         .light {
+
             position: absolute;
 
             width: 350px;
@@ -111,87 +124,77 @@
 
             border-radius: 50%;
 
-            background: rgba(255, 210, 220, 0.12);
+            background:
+                rgba(255,220,230,0.12);
 
             filter: blur(70px);
 
-            top: 10%;
             left: 50%;
+            top: 5%;
 
             transform: translateX(-50%);
 
-            z-index: 1;
+            z-index: 2;
 
             pointer-events: none;
         }
 
 
-        /* =========================================
+        /* =====================================
            MAIN CONTENT
-        ========================================= */
+        ===================================== */
 
         .content {
+
             position: absolute;
 
-            z-index: 5;
-
-            top: 50%;
             left: 50%;
+            top: 50%;
 
             transform: translate(-50%, -50%);
 
-            width: min(90%, 600px);
+            width: 90%;
+            max-width: 600px;
 
             text-align: center;
+
+            z-index: 5;
         }
 
 
-        /* =========================================
-           GLASS CARD
-        ========================================= */
+        /* =====================================
+           CARD
+        ===================================== */
 
         .card {
-            padding: 30px 25px 28px;
+
+            padding: 30px 22px;
 
             border-radius: 28px;
 
-            background: rgba(0, 0, 0, 0.28);
+            background:
+                rgba(0,0,0,0.28);
 
-            border: 1px solid rgba(255, 255, 255, 0.22);
+            border:
+                1px solid rgba(255,255,255,0.22);
 
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
 
             box-shadow:
-                0 15px 45px rgba(0, 0, 0, 0.30);
-
-            animation: cardAppear 1s ease;
+                0 15px 45px rgba(0,0,0,0.35);
         }
 
 
-        @keyframes cardAppear {
-
-            from {
-                opacity: 0;
-                transform: translateY(20px) scale(0.96);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-
-        }
-
-
-        /* =========================================
-           SMALL HEART
-        ========================================= */
+        /* =====================================
+           HEART
+        ===================================== */
 
         .heart {
-            font-size: 30px;
 
-            margin-bottom: 12px;
+            font-size: 32px;
+
+            margin-bottom: 10px;
 
             animation: heartbeat 1.8s infinite;
         }
@@ -205,64 +208,61 @@
             }
 
             50% {
-                transform: scale(1.18);
+                transform: scale(1.15);
             }
 
         }
 
 
-        /* =========================================
+        /* =====================================
            QUESTION
-        ========================================= */
+        ===================================== */
 
         .question {
+
             color: white;
 
-            font-size: clamp(30px, 7vw, 54px);
+            font-size:
+                clamp(30px, 7vw, 54px);
 
             font-weight: bold;
 
             line-height: 1.2;
 
-            margin-bottom: 30px;
+            margin-bottom: 35px;
 
             text-shadow:
-                0 3px 15px rgba(0, 0, 0, 0.8);
+                0 3px 15px rgba(0,0,0,0.9);
         }
 
 
-        /* =========================================
+        /* =====================================
            BUTTON AREA
-           
+
            IMPORTANT:
-           This area has a fixed size.
-           Therefore Yes will NEVER move.
-        ========================================= */
+           This is ONLY for the initial
+           position of the buttons.
+        ===================================== */
 
         .buttons {
+
             position: relative;
 
-            width: 260px;
-            height: 58px;
+            width: 250px;
+            height: 55px;
 
             margin: 0 auto;
         }
 
 
-        /* =========================================
-           ALL BUTTONS
-        ========================================= */
+        /* =====================================
+           BUTTONS
+        ===================================== */
 
         button {
-            position: absolute;
 
-            top: 0;
-
+            width: 105px;
             height: 52px;
-
-            min-width: 105px;
-
-            padding: 0 25px;
 
             border: none;
 
@@ -272,77 +272,96 @@
 
             font-weight: bold;
 
-            cursor: pointer;
-
             color: white;
 
-            box-shadow:
-                0 7px 20px rgba(0, 0, 0, 0.35);
+            cursor: pointer;
 
-            transition:
-                transform 0.15s ease,
-                box-shadow 0.15s ease;
+            box-shadow:
+                0 7px 20px rgba(0,0,0,0.35);
+
+            user-select: none;
+
+            -webkit-user-select: none;
+
+            touch-action: manipulation;
         }
 
 
-        button:hover {
-            transform: scale(1.07);
+        /* =====================================
+           YES
 
-            box-shadow:
-                0 10px 25px rgba(0, 0, 0, 0.45);
-        }
-
-
-        /* =========================================
-           YES BUTTON
-           
-           It NEVER changes position.
-        ========================================= */
+           NEVER MOVES
+        ===================================== */
 
         #yes {
+
+            position: absolute;
+
             left: 0;
+            top: 0;
 
             background:
                 linear-gradient(
                     135deg,
                     #55c878,
-                    #2e9f55
+                    #29994f
                 );
+
+            z-index: 20;
         }
 
 
-        /* =========================================
-           NO BUTTON
-           
-           Starts beside Yes.
-           After clicking, becomes fixed to screen.
-        ========================================= */
+        /* =====================================
+           NO
+
+           IMPORTANT:
+           It is FIXED from the beginning.
+
+           Therefore it does NOT affect YES.
+        ===================================== */
 
         #no {
-            right: 0;
+
+            position: fixed;
+
+            width: 105px;
+            height: 52px;
 
             background:
                 linear-gradient(
                     135deg,
-                    #ff6868,
-                    #dc3030
+                    #ff6666,
+                    #d92f2f
                 );
+
+            z-index: 999999;
+
+            margin: 0;
+
+            padding: 0;
+
+            transition:
+                left 0.12s ease,
+                top 0.12s ease;
         }
 
 
-        /* =========================================
+        /* =====================================
            SECOND PAGE
-        ========================================= */
+        ===================================== */
 
         #secondPage {
+
             display: none;
         }
 
 
         .message {
+
             color: white;
 
-            font-size: clamp(25px, 5vw, 43px);
+            font-size:
+                clamp(24px, 5vw, 43px);
 
             font-weight: bold;
 
@@ -352,38 +371,45 @@
 
             border-radius: 25px;
 
-            background: rgba(0, 0, 0, 0.30);
+            background:
+                rgba(0,0,0,0.30);
 
-            border: 1px solid rgba(255, 255, 255, 0.20);
+            border:
+                1px solid rgba(255,255,255,0.20);
 
             backdrop-filter: blur(8px);
+
             -webkit-backdrop-filter: blur(8px);
 
             text-shadow:
-                0 3px 12px rgba(0, 0, 0, 0.8);
+                0 3px 12px rgba(0,0,0,0.8);
         }
 
 
-        /* =========================================
+        /* =====================================
            FLOATING HEARTS
-        ========================================= */
+        ===================================== */
 
         .floating-heart {
+
             position: absolute;
 
             z-index: 3;
 
-            color: rgba(255, 255, 255, 0.75);
+            color:
+                rgba(255,255,255,0.75);
 
-            font-size: 18px;
+            font-size: 20px;
 
             pointer-events: none;
 
-            animation: floatHeart 6s linear infinite;
+            animation:
+                floatHeart 7s linear infinite;
         }
 
 
         .heart1 {
+
             left: 12%;
             bottom: -30px;
 
@@ -392,6 +418,7 @@
 
 
         .heart2 {
+
             left: 78%;
             bottom: -30px;
 
@@ -400,6 +427,7 @@
 
 
         .heart3 {
+
             left: 45%;
             bottom: -30px;
 
@@ -410,6 +438,7 @@
         @keyframes floatHeart {
 
             0% {
+
                 transform:
                     translateY(0)
                     rotate(0deg);
@@ -426,6 +455,7 @@
             }
 
             100% {
+
                 transform:
                     translateY(-110vh)
                     rotate(25deg);
@@ -436,26 +466,37 @@
         }
 
 
-        /* =========================================
+        /* =====================================
            MOBILE
-        ========================================= */
+        ===================================== */
 
         @media (max-width: 500px) {
 
             .card {
-                padding: 25px 18px;
+
+                padding:
+                    25px 15px;
             }
 
             .buttons {
-                width: 245px;
+
+                width: 235px;
             }
 
             button {
-                min-width: 100px;
 
-                padding: 0 20px;
+                width: 100px;
+
+                height: 50px;
 
                 font-size: 17px;
+            }
+
+            #no {
+
+                width: 100px;
+
+                height: 50px;
             }
 
         }
@@ -468,17 +509,15 @@
 <body>
 
 
-    <!-- =========================================
+    <!-- =====================================
          FIRST PAGE
-    ========================================= -->
+    ===================================== -->
 
     <div
         class="page"
         id="firstPage"
     >
 
-
-        <!-- First / older image -->
 
         <img
             class="background"
@@ -487,12 +526,8 @@
         >
 
 
-        <!-- Dark overlay -->
-
         <div class="overlay"></div>
 
-
-        <!-- Soft light -->
 
         <div class="light"></div>
 
@@ -512,45 +547,30 @@
         </div>
 
 
-        <!-- Main content -->
+        <!-- Content -->
 
         <div class="content">
 
             <div class="card">
 
 
-                <!-- Heart -->
-
                 <div class="heart">
                     🥺❤️
                 </div>
 
-
-                <!-- Question -->
 
                 <div class="question">
                     U forgive me 🥺?
                 </div>
 
 
-                <!-- Buttons -->
+                <!-- YES فقط داخل هذا العنصر -->
 
                 <div class="buttons">
-
-
-                    <!-- YES -->
 
                     <button id="yes">
                         Yes ❤️
                     </button>
-
-
-                    <!-- NO -->
-
-                    <button id="no">
-                        No
-                    </button>
-
 
                 </div>
 
@@ -558,21 +578,29 @@
 
         </div>
 
+
+        <!--
+            NO مستقل تمامًا عن YES.
+            لا يوجد داخل buttons.
+        -->
+
+        <button id="no">
+            No
+        </button>
+
     </div>
 
 
 
-    <!-- =========================================
+    <!-- =====================================
          SECOND PAGE
-    ========================================= -->
+    ===================================== -->
 
     <div
         class="page"
         id="secondPage"
     >
 
-
-        <!-- Second / newer image -->
 
         <img
             class="background"
@@ -587,15 +615,16 @@
         <div class="light"></div>
 
 
-        <!-- Second page content -->
-
         <div class="content">
 
-            <div class="message" id="finalMessage">
+            <div
+                class="message"
+                id="finalMessage"
+            >
 
                 <!--
-                    SEND ME YOUR MESSAGE
-                    AND I WILL PUT IT HERE
+                    سأضع رسالتك هنا
+                    عندما ترسلها لي
                 -->
 
             </div>
@@ -609,9 +638,9 @@
     <script>
 
 
-        /* =========================================
-           ELEMENTS
-        ========================================= */
+        /* =====================================
+           GET ELEMENTS
+        ===================================== */
 
         const noButton =
             document.getElementById("no");
@@ -627,47 +656,35 @@
 
 
 
-        /* =========================================
-           MOVE NO BUTTON
-        ========================================= */
+        /* =====================================
+           SET INITIAL NO POSITION
+           
+           This happens AFTER the page loads,
+           so we know the actual screen size.
+        ===================================== */
 
-        function moveNoButton() {
+        function setInitialNoPosition() {
+
+            const yesRect =
+                yesButton.getBoundingClientRect();
 
 
             /*
-             * From this point the No button
-             * is completely independent from
-             * the Yes button.
+             * Put No immediately beside Yes.
              */
 
-            noButton.style.position = "fixed";
+            let x =
+                yesRect.right + 20;
+
+            let y =
+                yesRect.top;
 
 
             /*
-             * Remove the original right position.
-             */
-
-            noButton.style.right = "auto";
-
-
-            /*
-             * Make sure transform does not
-             * move the button.
-             */
-
-            noButton.style.transform = "none";
-
-
-            /*
-             * Safe distance from screen edges.
+             * Make sure it fits.
              */
 
             const margin = 12;
-
-
-            /*
-             * Get actual button dimensions.
-             */
 
             const buttonWidth =
                 noButton.offsetWidth;
@@ -676,147 +693,175 @@
                 noButton.offsetHeight;
 
 
-            /*
-             * Available screen dimensions.
-             */
-
-            const screenWidth =
-                document.documentElement.clientWidth;
-
-            const screenHeight =
-                document.documentElement.clientHeight;
-
-
-            /*
-             * Calculate the maximum allowed
-             * X and Y coordinates.
-             */
-
             const maxX =
-                screenWidth -
+                window.innerWidth -
                 buttonWidth -
                 margin;
 
 
             const maxY =
-                screenHeight -
+                window.innerHeight -
                 buttonHeight -
                 margin;
 
 
-            /*
-             * Generate a random position.
-             */
-
-            let randomX =
-                margin +
-                Math.random() *
-                Math.max(0, maxX - margin);
-
-
-            let randomY =
-                margin +
-                Math.random() *
-                Math.max(0, maxY - margin);
-
-
-            /*
-             * FINAL SAFETY CHECK.
-             *
-             * This guarantees that the
-             * entire button stays inside
-             * the screen.
-             */
-
-            randomX =
+            x =
                 Math.max(
                     margin,
-                    Math.min(
-                        randomX,
-                        maxX
-                    )
+                    Math.min(x, maxX)
                 );
 
 
-            randomY =
+            y =
                 Math.max(
                     margin,
-                    Math.min(
-                        randomY,
-                        maxY
-                    )
+                    Math.min(y, maxY)
                 );
 
-
-            /*
-             * Put the button there.
-             */
 
             noButton.style.left =
-                randomX + "px";
+                x + "px";
 
             noButton.style.top =
-                randomY + "px";
-
+                y + "px";
         }
 
 
 
-        /* =========================================
-           NO BUTTON - MOUSE
-        ========================================= */
+        /* =====================================
+           MOVE NO
+        ===================================== */
+
+        function moveNoButton() {
+
+            const margin = 12;
+
+
+            /*
+             * Actual button dimensions.
+             */
+
+            const width =
+                noButton.getBoundingClientRect().width;
+
+            const height =
+                noButton.getBoundingClientRect().height;
+
+
+            /*
+             * Current viewport.
+             */
+
+            const viewportWidth =
+                window.innerWidth;
+
+            const viewportHeight =
+                window.innerHeight;
+
+
+            /*
+             * Maximum allowed coordinates.
+             */
+
+            const maxX =
+                viewportWidth -
+                width -
+                margin;
+
+
+            const maxY =
+                viewportHeight -
+                height -
+                margin;
+
+
+            /*
+             * Generate random position.
+             *
+             * It can NEVER be negative.
+             */
+
+            let x =
+                margin +
+                Math.random() *
+                Math.max(
+                    0,
+                    maxX - margin
+                );
+
+
+            let y =
+                margin +
+                Math.random() *
+                Math.max(
+                    0,
+                    maxY - margin
+                );
+
+
+            /*
+             * Final safety clamp.
+             */
+
+            x =
+                Math.max(
+                    margin,
+                    Math.min(x, maxX)
+                );
+
+
+            y =
+                Math.max(
+                    margin,
+                    Math.min(y, maxY)
+                );
+
+
+            /*
+             * Move ONLY No.
+             */
+
+            noButton.style.left =
+                x + "px";
+
+            noButton.style.top =
+                y + "px";
+        }
+
+
+
+        /* =====================================
+           NO BUTTON
+
+           pointerdown works for:
+           - iPhone
+           - Android
+           - Mouse
+        ===================================== */
 
         noButton.addEventListener(
-            "click",
-            function () {
-
-                moveNoButton();
-
-            }
-        );
-
-
-
-        /* =========================================
-           NO BUTTON - PHONE TOUCH
-        ========================================= */
-
-        noButton.addEventListener(
-            "touchstart",
-            function (event) {
+            "pointerdown",
+            function(event) {
 
                 event.preventDefault();
 
                 moveNoButton();
 
-            },
-            {
-                passive: false
             }
         );
 
 
 
-        /* =========================================
+        /* =====================================
            YES BUTTON
-        ========================================= */
+        ===================================== */
 
         yesButton.addEventListener(
             "click",
-            function () {
-
-
-                /*
-                 * Hide first page.
-                 */
+            function() {
 
                 firstPage.style.display =
                     "none";
-
-
-                /*
-                 * Show second page.
-                 */
 
                 secondPage.style.display =
                     "block";
@@ -826,93 +871,85 @@
 
 
 
-        /* =========================================
-           KEEP NO INSIDE SCREEN AFTER ROTATION
-        ========================================= */
+        /* =====================================
+           INITIAL POSITION
+        ===================================== */
+
+        window.addEventListener(
+            "load",
+            function() {
+
+                setInitialNoPosition();
+
+            }
+        );
+
+
+
+        /* =====================================
+           RESIZE / ROTATION
+        ===================================== */
 
         window.addEventListener(
             "resize",
-            function () {
+            function() {
+
+                const margin = 12;
+
+                const width =
+                    noButton.getBoundingClientRect().width;
+
+                const height =
+                    noButton.getBoundingClientRect().height;
 
 
-                /*
-                 * Only do this after No
-                 * has started moving.
-                 */
+                const maxX =
+                    window.innerWidth -
+                    width -
+                    margin;
 
-                if (
-                    noButton.style.position ===
-                    "fixed"
-                ) {
-
-
-                    const margin = 12;
+                const maxY =
+                    window.innerHeight -
+                    height -
+                    margin;
 
 
-                    const buttonWidth =
-                        noButton.offsetWidth;
-
-                    const buttonHeight =
-                        noButton.offsetHeight;
-
-
-                    const screenWidth =
-                        document.documentElement.clientWidth;
-
-                    const screenHeight =
-                        document.documentElement.clientHeight;
+                let x =
+                    parseFloat(
+                        noButton.style.left
+                    ) || margin;
 
 
-                    const maxX =
-                        screenWidth -
-                        buttonWidth -
-                        margin;
-
-                    const maxY =
-                        screenHeight -
-                        buttonHeight -
-                        margin;
+                let y =
+                    parseFloat(
+                        noButton.style.top
+                    ) || margin;
 
 
-                    let x =
-                        parseFloat(
-                            noButton.style.left
-                        ) || margin;
+                x =
+                    Math.max(
+                        margin,
+                        Math.min(x, maxX)
+                    );
 
 
-                    let y =
-                        parseFloat(
-                            noButton.style.top
-                        ) || margin;
+                y =
+                    Math.max(
+                        margin,
+                        Math.min(y, maxY)
+                    );
 
 
-                    x =
-                        Math.max(
-                            margin,
-                            Math.min(x, maxX)
-                        );
+                noButton.style.left =
+                    x + "px";
 
-
-                    y =
-                        Math.max(
-                            margin,
-                            Math.min(y, maxY)
-                        );
-
-
-                    noButton.style.left =
-                        x + "px";
-
-                    noButton.style.top =
-                        y + "px";
-
-                }
+                noButton.style.top =
+                    y + "px";
 
             }
         );
 
     </script>
-
 
 </body>
 
