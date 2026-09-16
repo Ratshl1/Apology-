@@ -55,7 +55,7 @@
 
 
         /* =====================================
-           IMAGE
+           BACKGROUND IMAGE
         ===================================== */
 
         .background {
@@ -90,7 +90,7 @@
 
 
         /* =====================================
-           IMAGE OVERLAY
+           OVERLAY
         ===================================== */
 
         .overlay {
@@ -106,7 +106,7 @@
                     to bottom,
                     rgba(0,0,0,0.08),
                     rgba(0,0,0,0.25),
-                    rgba(0,0,0,0.50)
+                    rgba(0,0,0,0.52)
                 );
         }
 
@@ -163,7 +163,7 @@
 
 
         /* =====================================
-           CARD
+           FIRST PAGE CARD
         ===================================== */
 
         .card {
@@ -196,7 +196,8 @@
 
             margin-bottom: 10px;
 
-            animation: heartbeat 1.8s infinite;
+            animation:
+                heartbeat 1.8s infinite;
         }
 
 
@@ -237,18 +238,14 @@
 
 
         /* =====================================
-           BUTTON AREA
-
-           IMPORTANT:
-           This is ONLY for the initial
-           position of the buttons.
+           YES BUTTON AREA
         ===================================== */
 
         .buttons {
 
             position: relative;
 
-            width: 250px;
+            width: 120px;
             height: 55px;
 
             margin: 0 auto;
@@ -256,7 +253,7 @@
 
 
         /* =====================================
-           BUTTONS
+           BUTTON
         ===================================== */
 
         button {
@@ -289,8 +286,6 @@
 
         /* =====================================
            YES
-
-           NEVER MOVES
         ===================================== */
 
         #yes {
@@ -313,11 +308,6 @@
 
         /* =====================================
            NO
-
-           IMPORTANT:
-           It is FIXED from the beginning.
-
-           Therefore it does NOT affect YES.
         ===================================== */
 
         #no {
@@ -337,7 +327,6 @@
             z-index: 999999;
 
             margin: 0;
-
             padding: 0;
 
             transition:
@@ -356,33 +345,85 @@
         }
 
 
+        /* =====================================
+           MESSAGE BOX
+        ===================================== */
+
+        .message-box {
+
+            width: 100%;
+
+            max-height: 82vh;
+
+            overflow-y: auto;
+
+            padding: 28px 24px;
+
+            border-radius: 25px;
+
+            background:
+                rgba(0,0,0,0.42);
+
+            border:
+                1px solid rgba(255,255,255,0.25);
+
+            backdrop-filter: blur(9px);
+            -webkit-backdrop-filter: blur(9px);
+
+            box-shadow:
+                0 15px 50px rgba(0,0,0,0.45);
+
+            text-align: left;
+
+            scrollbar-width: thin;
+
+            scrollbar-color:
+                rgba(255,255,255,0.6)
+                transparent;
+        }
+
+
+        /* =====================================
+           MESSAGE
+        ===================================== */
+
         .message {
 
             color: white;
 
             font-size:
-                clamp(24px, 5vw, 43px);
+                clamp(16px, 4vw, 21px);
+
+            line-height: 1.65;
+
+            font-weight: 500;
+
+            white-space: pre-line;
+
+            text-shadow:
+                0 2px 7px rgba(0,0,0,0.9);
+        }
+
+
+        /* =====================================
+           MESSAGE TITLE
+        ===================================== */
+
+        .message-title {
+
+            text-align: center;
+
+            font-size:
+                clamp(21px, 5vw, 30px);
 
             font-weight: bold;
 
-            line-height: 1.4;
+            margin-bottom: 20px;
 
-            padding: 25px;
-
-            border-radius: 25px;
-
-            background:
-                rgba(0,0,0,0.30);
-
-            border:
-                1px solid rgba(255,255,255,0.20);
-
-            backdrop-filter: blur(8px);
-
-            -webkit-backdrop-filter: blur(8px);
+            color: white;
 
             text-shadow:
-                0 3px 12px rgba(0,0,0,0.8);
+                0 3px 12px rgba(0,0,0,0.9);
         }
 
 
@@ -478,10 +519,31 @@
                     25px 15px;
             }
 
-            .buttons {
 
-                width: 235px;
+            .message-box {
+
+                max-height: 78vh;
+
+                padding:
+                    22px 18px;
+
+                border-radius: 22px;
             }
+
+
+            .message {
+
+                font-size: 16px;
+
+                line-height: 1.6;
+            }
+
+
+            .message-title {
+
+                font-size: 22px;
+            }
+
 
             button {
 
@@ -491,6 +553,7 @@
 
                 font-size: 17px;
             }
+
 
             #no {
 
@@ -519,6 +582,8 @@
     >
 
 
+        <!-- الصورة الأولى -->
+
         <img
             class="background"
             src="IMG_5757.jpeg"
@@ -527,7 +592,6 @@
 
 
         <div class="overlay"></div>
-
 
         <div class="light"></div>
 
@@ -564,7 +628,7 @@
                 </div>
 
 
-                <!-- YES فقط داخل هذا العنصر -->
+                <!-- YES -->
 
                 <div class="buttons">
 
@@ -579,10 +643,7 @@
         </div>
 
 
-        <!--
-            NO مستقل تمامًا عن YES.
-            لا يوجد داخل buttons.
-        -->
+        <!-- NO مستقل عن YES -->
 
         <button id="no">
             No
@@ -602,6 +663,8 @@
     >
 
 
+        <!-- الصورة الثانية -->
+
         <img
             class="background"
             src="IMG_5756.jpeg"
@@ -611,21 +674,80 @@
 
         <div class="overlay"></div>
 
-
         <div class="light"></div>
 
 
+        <!-- Floating hearts -->
+
+        <div class="floating-heart heart1">
+            ♡
+        </div>
+
+        <div class="floating-heart heart2">
+            ♡
+        </div>
+
+        <div class="floating-heart heart3">
+            ♡
+        </div>
+
+
+        <!-- =================================
+             MESSAGE
+        ================================= -->
+
         <div class="content">
 
-            <div
-                class="message"
-                id="finalMessage"
-            >
+            <div class="message-box">
 
-                <!--
-                    سأضع رسالتك هنا
-                    عندما ترسلها لي
-                -->
+
+                <div class="message-title">
+                    For You 🤍
+                </div>
+
+
+                <div class="message">
+
+For the love of my journey….
+For the heart of my life ….
+For the sword of my war…
+For the shelter of my weakness…
+For the meld of my soul….
+For mine …..
+
+Ik u always overthink… u always cry … u always feel ur not good enough …. U always overthink ab ur body .. ur life … ab everything….
+
+I dont blame u … and ill never blame u … if i told u every second that idc ab the things u overthink ab u’ll still overthink…. U cant dont overthink…
+
+Why i dont blame u for all of that ?… bc no one in ur entire life sees the waves between ur eyes … ur blinks … and the pretty swords above ur eyes ….
+
+No one even saw what behind that mountain of strength … maybe u did told me everything ab what u passed with and the seas u passed with ur boat … not to me feel bad for u …. Bc u dont need that ..
+
+u did it alone u ensured for urself that u can pass the 7 seas with ur boat alone .. but choose to share with me everything..
+
+u choose to tell me what behind the mountain … and im here saying that behind that mountain is heavens and rivers … life and strength .. not what u think ab ..
+
+i even saw what behind the mountain from the first moment … the way u speak … the way u enjoy … the way u think…. The way u love .
+
+I loved every single one of them … i fell for every single atom of u ….
+
+Im here to say that u can overthink.. u can overthink all the day .. all the life and im always here to listen to u and be ur relief …
+
+ill try to give my best even u didn’t ask .
+
+Not for being sorry for ur past .. but for the love we made …. For the amazing moments we made … for ❤️‍🩹U❤️‍🩹 .
+
+U became a part of me .. not just a soulmate ….
+
+Ur tears is a mountains on my shoulders … ur breaks is a dark days in my life … ur weakness is mine … ur power is our….
+
+Im here to hold the tired hands again in the middle of the ocean … to say for the world … to say for the universe… we can break the rules…….
+
+And thank u for forgiving me 🤍🤍.
+
+I love u for the last drop of blood in my body….
+
+                </div>
 
             </div>
 
@@ -639,7 +761,7 @@
 
 
         /* =====================================
-           GET ELEMENTS
+           ELEMENTS
         ===================================== */
 
         const noButton =
@@ -657,10 +779,7 @@
 
 
         /* =====================================
-           SET INITIAL NO POSITION
-           
-           This happens AFTER the page loads,
-           so we know the actual screen size.
+           INITIAL NO POSITION
         ===================================== */
 
         function setInitialNoPosition() {
@@ -669,29 +788,32 @@
                 yesButton.getBoundingClientRect();
 
 
+            const margin = 12;
+
+
+            const buttonWidth =
+                noButton.offsetWidth;
+
+
+            const buttonHeight =
+                noButton.offsetHeight;
+
+
             /*
-             * Put No immediately beside Yes.
+             * Place No beside Yes.
              */
 
             let x =
                 yesRect.right + 20;
+
 
             let y =
                 yesRect.top;
 
 
             /*
-             * Make sure it fits.
+             * Keep it inside screen.
              */
-
-            const margin = 12;
-
-            const buttonWidth =
-                noButton.offsetWidth;
-
-            const buttonHeight =
-                noButton.offsetHeight;
-
 
             const maxX =
                 window.innerWidth -
@@ -722,6 +844,7 @@
             noButton.style.left =
                 x + "px";
 
+
             noButton.style.top =
                 y + "px";
         }
@@ -737,49 +860,29 @@
             const margin = 12;
 
 
-            /*
-             * Actual button dimensions.
-             */
+            const rect =
+                noButton.getBoundingClientRect();
+
 
             const width =
-                noButton.getBoundingClientRect().width;
+                rect.width;
+
 
             const height =
-                noButton.getBoundingClientRect().height;
+                rect.height;
 
-
-            /*
-             * Current viewport.
-             */
-
-            const viewportWidth =
-                window.innerWidth;
-
-            const viewportHeight =
-                window.innerHeight;
-
-
-            /*
-             * Maximum allowed coordinates.
-             */
 
             const maxX =
-                viewportWidth -
+                window.innerWidth -
                 width -
                 margin;
 
 
             const maxY =
-                viewportHeight -
+                window.innerHeight -
                 height -
                 margin;
 
-
-            /*
-             * Generate random position.
-             *
-             * It can NEVER be negative.
-             */
 
             let x =
                 margin +
@@ -800,7 +903,7 @@
 
 
             /*
-             * Final safety clamp.
+             * Final safety check.
              */
 
             x =
@@ -817,12 +920,9 @@
                 );
 
 
-            /*
-             * Move ONLY No.
-             */
-
             noButton.style.left =
                 x + "px";
+
 
             noButton.style.top =
                 y + "px";
@@ -832,11 +932,6 @@
 
         /* =====================================
            NO BUTTON
-
-           pointerdown works for:
-           - iPhone
-           - Android
-           - Mouse
         ===================================== */
 
         noButton.addEventListener(
@@ -887,7 +982,7 @@
 
 
         /* =====================================
-           RESIZE / ROTATION
+           RESIZE
         ===================================== */
 
         window.addEventListener(
@@ -896,17 +991,24 @@
 
                 const margin = 12;
 
+
+                const rect =
+                    noButton.getBoundingClientRect();
+
+
                 const width =
-                    noButton.getBoundingClientRect().width;
+                    rect.width;
+
 
                 const height =
-                    noButton.getBoundingClientRect().height;
+                    rect.height;
 
 
                 const maxX =
                     window.innerWidth -
                     width -
                     margin;
+
 
                 const maxY =
                     window.innerHeight -
@@ -942,6 +1044,7 @@
 
                 noButton.style.left =
                     x + "px";
+
 
                 noButton.style.top =
                     y + "px";
