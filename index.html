@@ -1,753 +1,592 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>For You 🥺❤️</title>
-
-
-    <style>
-
-        * {
-            box-sizing: border-box;
-        }
-
-
-        html,
-        body {
-
-            margin: 0;
-            padding: 0;
-
-            width: 100%;
-            height: 100%;
-
-            overflow: hidden;
-
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-
-        /* =====================================
-           PAGE
-        ===================================== */
-
-        .page {
-
-            position: fixed;
-
-            inset: 0;
-
-            width: 100vw;
-            height: 100dvh;
-
-            overflow: hidden;
-
-            background: #000;
-        }
-
-
-        /* =====================================
-           BACKGROUND IMAGE
-        ===================================== */
-
-        .background {
-
-            position: absolute;
-
-            left: 0;
-            top: 0;
-
-            width: 100%;
-            height: 100%;
-
-            object-fit: cover;
-
-            z-index: 0;
-
-            animation: zoom 14s ease-in-out infinite alternate;
-        }
-
-
-        @keyframes zoom {
-
-            from {
-                transform: scale(1);
-            }
-
-            to {
-                transform: scale(1.035);
-            }
-
-        }
-
-
-        /* =====================================
-           OVERLAY
-        ===================================== */
-
-        .overlay {
-
-            position: absolute;
-
-            inset: 0;
-
-            z-index: 1;
-
-            background:
-                linear-gradient(
-                    to bottom,
-                    rgba(0,0,0,0.08),
-                    rgba(0,0,0,0.25),
-                    rgba(0,0,0,0.52)
-                );
-        }
-
-
-        /* =====================================
-           SOFT LIGHT
-        ===================================== */
-
-        .light {
-
-            position: absolute;
-
-            width: 350px;
-            height: 350px;
-
-            border-radius: 50%;
-
-            background:
-                rgba(255,220,230,0.12);
-
-            filter: blur(70px);
-
-            left: 50%;
-            top: 5%;
-
-            transform: translateX(-50%);
-
-            z-index: 2;
-
-            pointer-events: none;
-        }
-
-
-        /* =====================================
-           MAIN CONTENT
-        ===================================== */
-
-        .content {
-
-            position: absolute;
-
-            left: 50%;
-            top: 50%;
-
-            transform: translate(-50%, -50%);
-
-            width: 90%;
-            max-width: 600px;
-
-            text-align: center;
-
-            z-index: 5;
-        }
-
-
-        /* =====================================
-           FIRST PAGE CARD
-        ===================================== */
-
-        .card {
-
-            padding: 30px 22px;
-
-            border-radius: 28px;
-
-            background:
-                rgba(0,0,0,0.28);
-
-            border:
-                1px solid rgba(255,255,255,0.22);
-
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-
-            box-shadow:
-                0 15px 45px rgba(0,0,0,0.35);
-        }
-
-
-        /* =====================================
-           HEART
-        ===================================== */
-
-        .heart {
-
-            font-size: 32px;
-
-            margin-bottom: 10px;
-
-            animation:
-                heartbeat 1.8s infinite;
-        }
-
-
-        @keyframes heartbeat {
-
-            0%,
-            100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.15);
-            }
-
-        }
-
-
-        /* =====================================
-           QUESTION
-        ===================================== */
-
-        .question {
-
-            color: white;
-
-            font-size:
-                clamp(30px, 7vw, 54px);
-
-            font-weight: bold;
-
-            line-height: 1.2;
-
-            margin-bottom: 35px;
-
-            text-shadow:
-                0 3px 15px rgba(0,0,0,0.9);
-        }
-
-
-        /* =====================================
-           YES BUTTON AREA
-        ===================================== */
-
-        .buttons {
-
-            position: relative;
-
-            width: 120px;
-            height: 55px;
-
-            margin: 0 auto;
-        }
-
-
-        /* =====================================
-           BUTTON
-        ===================================== */
-
-        button {
-
-            width: 105px;
-            height: 52px;
-
-            border: none;
-
-            border-radius: 16px;
-
-            font-size: 18px;
-
-            font-weight: bold;
-
-            color: white;
-
-            cursor: pointer;
-
-            box-shadow:
-                0 7px 20px rgba(0,0,0,0.35);
-
-            user-select: none;
-
-            -webkit-user-select: none;
-
-            touch-action: manipulation;
-        }
-
-
-        /* =====================================
-           YES
-        ===================================== */
-
-        #yes {
-
-            position: absolute;
-
-            left: 0;
-            top: 0;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #55c878,
-                    #29994f
-                );
-
-            z-index: 20;
-        }
-
-
-        /* =====================================
-           NO
-        ===================================== */
-
-        #no {
-
-            position: fixed;
-
-            width: 105px;
-            height: 52px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #ff6666,
-                    #d92f2f
-                );
-
-            z-index: 999999;
-
-            margin: 0;
-            padding: 0;
-
-            transition:
-                left 0.12s ease,
-                top 0.12s ease;
-        }
-
-
-        /* =====================================
-           SECOND PAGE
-        ===================================== */
-
-        #secondPage {
-
-            display: none;
-        }
-
-
-        /* =====================================
-           MESSAGE BOX
-        ===================================== */
-
-        .message-box {
-
-            width: 100%;
-
-            max-height: 82vh;
-
-            overflow-y: auto;
-
-            padding: 28px 24px;
-
-            border-radius: 25px;
-
-            background:
-                rgba(0,0,0,0.42);
-
-            border:
-                1px solid rgba(255,255,255,0.25);
-
-            backdrop-filter: blur(9px);
-            -webkit-backdrop-filter: blur(9px);
-
-            box-shadow:
-                0 15px 50px rgba(0,0,0,0.45);
-
-            text-align: left;
-
-            scrollbar-width: thin;
-
-            scrollbar-color:
-                rgba(255,255,255,0.6)
-                transparent;
-        }
-
-
-        /* =====================================
-           MESSAGE
-        ===================================== */
-
-        .message {
-
-            color: white;
-
-            font-size:
-                clamp(16px, 4vw, 21px);
-
-            line-height: 1.65;
-
-            font-weight: 500;
-
-            white-space: pre-line;
-
-            text-shadow:
-                0 2px 7px rgba(0,0,0,0.9);
-        }
-
-
-        /* =====================================
-           MESSAGE TITLE
-        ===================================== */
-
-        .message-title {
-
-            text-align: center;
-
-            font-size:
-                clamp(21px, 5vw, 30px);
-
-            font-weight: bold;
-
-            margin-bottom: 20px;
-
-            color: white;
-
-            text-shadow:
-                0 3px 12px rgba(0,0,0,0.9);
-        }
-
-
-        /* =====================================
-           FLOATING HEARTS
-        ===================================== */
-
-        .floating-heart {
-
-            position: absolute;
-
-            z-index: 3;
-
-            color:
-                rgba(255,255,255,0.75);
-
-            font-size: 20px;
-
-            pointer-events: none;
-
-            animation:
-                floatHeart 7s linear infinite;
-        }
-
-
-        .heart1 {
-
-            left: 12%;
-            bottom: -30px;
-
-            animation-delay: 0s;
-        }
-
-
-        .heart2 {
-
-            left: 78%;
-            bottom: -30px;
-
-            animation-delay: 2s;
-        }
-
-
-        .heart3 {
-
-            left: 45%;
-            bottom: -30px;
-
-            animation-delay: 4s;
-        }
-
-
-        @keyframes floatHeart {
-
-            0% {
-
-                transform:
-                    translateY(0)
-                    rotate(0deg);
-
-                opacity: 0;
-            }
-
-            15% {
-                opacity: 0.8;
-            }
-
-            85% {
-                opacity: 0.7;
-            }
-
-            100% {
-
-                transform:
-                    translateY(-110vh)
-                    rotate(25deg);
-
-                opacity: 0;
-            }
-
-        }
-
-
-        /* =====================================
-           MOBILE
-        ===================================== */
-
-        @media (max-width: 500px) {
-
-            .card {
-
-                padding:
-                    25px 15px;
-            }
-
-
-            .message-box {
-
-                max-height: 78vh;
-
-                padding:
-                    22px 18px;
-
-                border-radius: 22px;
-            }
-
-
-            .message {
-
-                font-size: 16px;
-
-                line-height: 1.6;
-            }
-
-
-            .message-title {
-
-                font-size: 22px;
-            }
-
-
-            button {
-
-                width: 100px;
-
-                height: 50px;
-
-                font-size: 17px;
-            }
-
-
-            #no {
-
-                width: 100px;
-
-                height: 50px;
-            }
-
-        }
-
-    </style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>For You ❤️</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+/* =========================
+   PAGE 1
+========================= */
+
+#page1 {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100dvh;
+    overflow: hidden;
+    background: #05020a;
+}
+
+.background {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    animation: slowZoom 12s ease-in-out infinite alternate;
+}
+
+@keyframes slowZoom {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.035);
+    }
+}
+
+/* Dark overlay */
+.overlay {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,0.15),
+            rgba(0,0,0,0.38)
+        );
+}
+
+/* Soft pink light */
+.glow {
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: rgba(255, 100, 170, 0.16);
+    filter: blur(80px);
+    top: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Main content */
+.question-area {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+    z-index: 5;
+}
+
+/* Glass question box */
+.question-box {
+    display: inline-block;
+    padding: 22px 28px;
+    border-radius: 25px;
+    background: rgba(0, 0, 0, 0.28);
+    border: 1px solid rgba(255,255,255,0.18);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+}
+
+.question {
+    color: white;
+    font-size: clamp(26px, 7vw, 46px);
+    font-weight: bold;
+    text-shadow: 0 3px 15px rgba(0,0,0,0.6);
+}
+
+.heart {
+    display: inline-block;
+    margin-top: 7px;
+    animation: heartbeat 1.3s infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.18);
+    }
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.buttons {
+    position: relative;
+    width: 120px;
+    height: 58px;
+    margin: 25px auto 0;
+}
+
+/* YES is always fixed inside its own centered area */
+#yesBtn {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 120px;
+    height: 58px;
+
+    border: none;
+    border-radius: 30px;
+
+    background: linear-gradient(135deg, #4ade80, #16a34a);
+    color: white;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    cursor: pointer;
+    z-index: 20;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.3),
+        0 0 18px rgba(74,222,128,0.25);
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#yesBtn:active {
+    transform: scale(0.94);
+}
+
+/*
+   NO is completely independent from .buttons.
+   Therefore moving it NEVER moves YES.
+*/
+#noBtn {
+    position: fixed;
+
+    width: 120px;
+    height: 58px;
+
+    border: none;
+    border-radius: 30px;
+
+    background: linear-gradient(135deg, #ff5f6d, #d90429);
+    color: white;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    cursor: pointer;
+    z-index: 30;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.3),
+        0 0 18px rgba(255,70,90,0.25);
+
+    transition: left 0.18s ease, top 0.18s ease;
+}
+
+/* Floating hearts */
+.floating-heart {
+    position: absolute;
+    color: rgba(255,255,255,0.4);
+    font-size: 25px;
+    animation: floatUp 6s linear infinite;
+    pointer-events: none;
+}
+
+.floating-heart:nth-child(1) {
+    left: 12%;
+    bottom: -30px;
+    animation-delay: 0s;
+}
+
+.floating-heart:nth-child(2) {
+    left: 75%;
+    bottom: -30px;
+    animation-delay: 2s;
+}
+
+.floating-heart:nth-child(3) {
+    left: 45%;
+    bottom: -30px;
+    animation-delay: 4s;
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(0) scale(0.8);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 0.7;
+    }
+
+    80% {
+        opacity: 0.4;
+    }
+
+    to {
+        transform: translateY(-100vh) scale(1.2);
+        opacity: 0;
+    }
+}
+
+
+/* =========================
+   PAGE 2
+========================= */
+
+#page2 {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100dvh;
+    display: none;
+    overflow: hidden;
+    background: #05020a;
+}
+
+.second-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.second-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,0.08),
+            rgba(0,0,0,0.38)
+        );
+}
+
+/*
+   Smaller and more transparent message box
+   so more of the background image remains visible.
+*/
+.message-wrapper {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    width: min(88%, 520px);
+
+    max-height: 78vh;
+
+    padding: 13px;
+
+    border-radius: 22px;
+
+    background: rgba(0, 0, 0, 0.20);
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,0.22);
+
+    overflow: hidden;
+
+    z-index: 5;
+}
+
+.message-box {
+    max-height: 72vh;
+    overflow-y: auto;
+
+    padding: 5px 8px 8px;
+
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.35) transparent;
+}
+
+.message-box::-webkit-scrollbar {
+    width: 4px;
+}
+
+.message-box::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.message-box::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.35);
+    border-radius: 10px;
+}
+
+.message-title {
+    text-align: center;
+    color: white;
+
+    font-size: clamp(22px, 6vw, 32px);
+    font-weight: bold;
+
+    margin-bottom: 14px;
+
+    text-shadow: 0 3px 12px rgba(0,0,0,0.65);
+}
+
+.message {
+    color: rgba(255,255,255,0.95);
+
+    font-size: clamp(14px, 3.8vw, 17px);
+    line-height: 1.65;
+
+    text-align: left;
+
+    text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+}
+
+.message p {
+    margin-bottom: 13px;
+}
+
+.love {
+    text-align: center;
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .question-box {
+        padding: 18px 22px;
+        border-radius: 22px;
+    }
+
+    .question {
+        font-size: 29px;
+    }
+
+    .buttons {
+        margin-top: 22px;
+    }
+
+    #yesBtn,
+    #noBtn {
+        width: 110px;
+        height: 54px;
+        font-size: 18px;
+    }
+
+    .message-wrapper {
+        width: 90%;
+        max-height: 76vh;
+        padding: 10px;
+        border-radius: 20px;
+    }
+
+    .message-box {
+        max-height: 70vh;
+        padding: 3px 6px 6px;
+    }
+
+    .message-title {
+        font-size: 23px;
+        margin-bottom: 10px;
+    }
+
+    .message {
+        font-size: 14px;
+        line-height: 1.58;
+    }
+
+    .message p {
+        margin-bottom: 11px;
+    }
+}
+</style>
 </head>
-
 
 <body>
 
+<!-- =========================
+     PAGE 1
+========================= -->
 
-    <!-- =====================================
-         FIRST PAGE
-    ===================================== -->
+<div id="page1">
 
-    <div
-        class="page"
-        id="firstPage"
+    <img
+        src="IMG_5757.jpeg"
+        class="background"
+        alt="Background"
     >
 
+    <div class="overlay"></div>
+    <div class="glow"></div>
 
-        <!-- الصورة الأولى -->
+    <div class="floating-heart">♡</div>
+    <div class="floating-heart">♡</div>
+    <div class="floating-heart">♡</div>
 
-        <img
-            class="background"
-            src="IMG_5757.jpeg"
-            alt="Our photo"
-        >
+    <div class="question-area">
 
+        <div class="question-box">
 
-        <div class="overlay"></div>
+            <div class="question">
+                U forgive me?
+                <span class="heart">🥺❤️</span>
+            </div>
 
-        <div class="light"></div>
-
-
-        <!-- Floating hearts -->
-
-        <div class="floating-heart heart1">
-            ♡
-        </div>
-
-        <div class="floating-heart heart2">
-            ♡
-        </div>
-
-        <div class="floating-heart heart3">
-            ♡
-        </div>
-
-
-        <!-- Content -->
-
-        <div class="content">
-
-            <div class="card">
-
-
-                <div class="heart">
-                    🥺❤️
-                </div>
-
-
-                <div class="question">
-                    U forgive me 🥺?
-                </div>
-
+            <div class="buttons">
 
                 <!-- YES -->
-
-                <div class="buttons">
-
-                    <button id="yes">
-                        Yes ❤️
-                    </button>
-
-                </div>
+                <button id="yesBtn">
+                    Yes ❤️
+                </button>
 
             </div>
 
         </div>
 
-
-        <!-- NO مستقل عن YES -->
-
-        <button id="no">
-            No
-        </button>
-
     </div>
 
+    <!-- NO is intentionally outside .buttons -->
+    <button id="noBtn">
+        No 😭
+    </button>
+
+</div>
 
 
-    <!-- =====================================
-         SECOND PAGE
-    ===================================== -->
+<!-- =========================
+     PAGE 2
+========================= -->
 
-    <div
-        class="page"
-        id="secondPage"
+<div id="page2">
+
+    <img
+        src="IMG_5756.jpeg"
+        class="second-image"
+        alt="For You"
     >
 
+    <div class="second-overlay"></div>
 
-        <!-- الصورة الثانية -->
+    <div class="message-wrapper">
 
-        <img
-            class="background"
-            src="IMG_5756.jpeg"
-            alt="Our photo"
-        >
+        <div class="message-box">
 
+            <div class="message-title">
+                For You 🤍
+            </div>
 
-        <div class="overlay"></div>
+            <div class="message">
 
-        <div class="light"></div>
+                <p>
+                    For the love of my journey….<br>
+                    For the heart of my life ….<br>
+                    For the sword of my war…<br>
+                    For the shelter of my weakness…<br>
+                    For the meld of my soul….<br>
+                    For mine …..
+                </p>
 
+                <p>
+                    Ik u always overthink… u always cry … u always feel ur not good enough ….
+                    U always overthink ab ur body .. ur life … ab everything….
+                </p>
 
-        <!-- Floating hearts -->
+                <p>
+                    I dont blame u … and ill never blame u …
+                    if i told u every second that idc ab the things u overthink ab
+                    u’ll still overthink….
+                    U cant dont overthink…
+                </p>
 
-        <div class="floating-heart heart1">
-            ♡
-        </div>
+                <p>
+                    Why i dont blame u for all of that ?…
+                    bc no one in ur entire life sees the waves between ur eyes …
+                    ur blinks … and the pretty swords above ur eyes ….
+                </p>
 
-        <div class="floating-heart heart2">
-            ♡
-        </div>
+                <p>
+                    No one even saw what behind that mountain of strength …
+                    maybe u did told me everything ab what u passed with
+                    and the seas u passed with ur boat …
+                    not to me feel bad for u ….
+                    Bc u dont need that ..
+                </p>
 
-        <div class="floating-heart heart3">
-            ♡
-        </div>
+                <p>
+                    u did it alone u ensured for urself that u can pass
+                    the 7 seas with ur boat alone ..
+                    but choose to share with me everything..
+                    u choose to tell me what behind the mountain …
+                </p>
 
+                <p>
+                    and im here saying that behind that mountain is heavens and rivers …
+                    life and strength ..
+                    not what u think ab ..
+                    i even saw what behind the mountain from the first moment …
+                    the way u speak … the way u enjoy … the way u think….
+                    The way u love .
+                </p>
 
-        <!-- =================================
-             MESSAGE
-        ================================= -->
+                <p>
+                    I loved every single one of them …
+                    i fell for every single atom of u ….
+                </p>
 
-        <div class="content">
+                <p>
+                    Im here to say that u can overthink..
+                    u can overthink all the day ..
+                    all the life and im always here to listen to u
+                    and be ur relief …
+                    ill try to give my best even u didn’t ask .
+                </p>
 
-            <div class="message-box">
+                <p>
+                    Not for being sorry for ur past ..
+                    but for the love we made ….
+                    For the amazing moments we made …
+                    for ❤️‍🩹U❤️‍🩹 .
+                </p>
 
+                <p>
+                    U became a part of me ..
+                    not just a soulmate ….
+                    Ur tears is a mountains on my shoulders …
+                    ur breaks is a dark days in my life …
+                    ur weakness is mine …
+                    ur power is our….
+                </p>
 
-                <div class="message-title">
-                    For You 🤍
-                </div>
+                <p>
+                    Im here to hold the tired hands again in the middle of the ocean …
+                    to say for the world …
+                    to say for the universe…
+                    we can break the rules…….
+                </p>
 
+                <p>
+                    And thank u for forgiving me 🤍🤍.
+                </p>
 
-                <div class="message">
-
-For the love of my journey….
-For the heart of my life ….
-For the sword of my war…
-For the shelter of my weakness…
-For the meld of my soul….
-For mine …..
-
-Ik u always overthink… u always cry … u always feel ur not good enough …. U always overthink ab ur body .. ur life … ab everything….
-
-I dont blame u … and ill never blame u … if i told u every second that idc ab the things u overthink ab u’ll still overthink…. U cant dont overthink…
-
-Why i dont blame u for all of that ?… bc no one in ur entire life sees the waves between ur eyes … ur blinks … and the pretty swords above ur eyes ….
-
-No one even saw what behind that mountain of strength … maybe u did told me everything ab what u passed with and the seas u passed with ur boat … not to me feel bad for u …. Bc u dont need that ..
-
-u did it alone u ensured for urself that u can pass the 7 seas with ur boat alone .. but choose to share with me everything..
-
-u choose to tell me what behind the mountain … and im here saying that behind that mountain is heavens and rivers … life and strength .. not what u think ab ..
-
-i even saw what behind the mountain from the first moment … the way u speak … the way u enjoy … the way u think…. The way u love .
-
-I loved every single one of them … i fell for every single atom of u ….
-
-Im here to say that u can overthink.. u can overthink all the day .. all the life and im always here to listen to u and be ur relief …
-
-ill try to give my best even u didn’t ask .
-
-Not for being sorry for ur past .. but for the love we made …. For the amazing moments we made … for ❤️‍🩹U❤️‍🩹 .
-
-U became a part of me .. not just a soulmate ….
-
-Ur tears is a mountains on my shoulders … ur breaks is a dark days in my life … ur weakness is mine … ur power is our….
-
-Im here to hold the tired hands again in the middle of the ocean … to say for the world … to say for the universe… we can break the rules…….
-
-And thank u for forgiving me 🤍🤍.
-
-I love u for the last drop of blood in my body….
-
-                </div>
+                <p class="love">
+                    I love u for the last drop of blood in my body…
+                    ❤️‍🩹
+                </p>
 
             </div>
 
@@ -755,305 +594,159 @@ I love u for the last drop of blood in my body….
 
     </div>
 
+</div>
 
 
-    <script>
+<script>
 
+/* =========================
+   ELEMENTS
+========================= */
 
-        /* =====================================
-           ELEMENTS
-        ===================================== */
+const page1 = document.getElementById("page1");
+const page2 = document.getElementById("page2");
 
-        const noButton =
-            document.getElementById("no");
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
 
-        const yesButton =
-            document.getElementById("yes");
 
-        const firstPage =
-            document.getElementById("firstPage");
+/* =========================
+   INITIAL NO POSITION
+   Place it beside YES without
+   affecting YES.
+========================= */
 
-        const secondPage =
-            document.getElementById("secondPage");
+function setInitialNoPosition() {
 
+    const yesRect = yesBtn.getBoundingClientRect();
 
+    const noWidth = noBtn.offsetWidth;
+    const gap = 15;
 
-        /* =====================================
-           INITIAL NO POSITION
-        ===================================== */
+    let x = yesRect.right + gap;
+    let y = yesRect.top;
 
-        function setInitialNoPosition() {
+    /*
+       If there isn't enough space on the right,
+       place No on the left.
+    */
 
-            const yesRect =
-                yesButton.getBoundingClientRect();
+    if (x + noWidth > window.innerWidth - 10) {
+        x = yesRect.left - noWidth - gap;
+    }
 
+    /*
+       Safety clamp
+    */
 
-            const margin = 12;
+    x = Math.max(
+        10,
+        Math.min(x, window.innerWidth - noWidth - 10)
+    );
 
+    y = Math.max(
+        10,
+        Math.min(y, window.innerHeight - noBtn.offsetHeight - 10)
+    );
 
-            const buttonWidth =
-                noButton.offsetWidth;
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+}
 
 
-            const buttonHeight =
-                noButton.offsetHeight;
+/* =========================
+   MOVE NO
+========================= */
 
+function moveNoButton() {
 
-            /*
-             * Place No beside Yes.
-             */
+    const buttonWidth = noBtn.offsetWidth;
+    const buttonHeight = noBtn.offsetHeight;
 
-            let x =
-                yesRect.right + 20;
+    const margin = 12;
 
-
-            let y =
-                yesRect.top;
-
-
-            /*
-             * Keep it inside screen.
-             */
-
-            const maxX =
-                window.innerWidth -
-                buttonWidth -
-                margin;
-
-
-            const maxY =
-                window.innerHeight -
-                buttonHeight -
-                margin;
-
-
-            x =
-                Math.max(
-                    margin,
-                    Math.min(x, maxX)
-                );
-
-
-            y =
-                Math.max(
-                    margin,
-                    Math.min(y, maxY)
-                );
-
-
-            noButton.style.left =
-                x + "px";
-
-
-            noButton.style.top =
-                y + "px";
-        }
-
-
-
-        /* =====================================
-           MOVE NO
-        ===================================== */
-
-        function moveNoButton() {
-
-            const margin = 12;
-
-
-            const rect =
-                noButton.getBoundingClientRect();
-
-
-            const width =
-                rect.width;
-
-
-            const height =
-                rect.height;
-
-
-            const maxX =
-                window.innerWidth -
-                width -
-                margin;
-
-
-            const maxY =
-                window.innerHeight -
-                height -
-                margin;
-
-
-            let x =
-                margin +
-                Math.random() *
-                Math.max(
-                    0,
-                    maxX - margin
-                );
-
-
-            let y =
-                margin +
-                Math.random() *
-                Math.max(
-                    0,
-                    maxY - margin
-                );
-
-
-            /*
-             * Final safety check.
-             */
-
-            x =
-                Math.max(
-                    margin,
-                    Math.min(x, maxX)
-                );
-
-
-            y =
-                Math.max(
-                    margin,
-                    Math.min(y, maxY)
-                );
-
-
-            noButton.style.left =
-                x + "px";
-
-
-            noButton.style.top =
-                y + "px";
-        }
-
-
-
-        /* =====================================
-           NO BUTTON
-        ===================================== */
-
-        noButton.addEventListener(
-            "pointerdown",
-            function(event) {
-
-                event.preventDefault();
-
-                moveNoButton();
-
-            }
+    const maxX =
+        Math.max(
+            margin,
+            window.innerWidth - buttonWidth - margin
         );
 
-
-
-        /* =====================================
-           YES BUTTON
-        ===================================== */
-
-        yesButton.addEventListener(
-            "click",
-            function() {
-
-                firstPage.style.display =
-                    "none";
-
-                secondPage.style.display =
-                    "block";
-
-            }
+    const maxY =
+        Math.max(
+            margin,
+            window.innerHeight - buttonHeight - margin
         );
 
+    const x =
+        margin +
+        Math.random() * (maxX - margin);
+
+    const y =
+        margin +
+        Math.random() * (maxY - margin);
+
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+}
 
 
-        /* =====================================
-           INITIAL POSITION
-        ===================================== */
+/* =========================
+   NO BUTTON
+   pointerdown works on
+   both phone and computer.
+========================= */
 
-        window.addEventListener(
-            "load",
-            function() {
+noBtn.addEventListener("pointerdown", function(e) {
 
-                setInitialNoPosition();
+    e.preventDefault();
+    moveNoButton();
 
-            }
-        );
-
-
-
-        /* =====================================
-           RESIZE
-        ===================================== */
-
-        window.addEventListener(
-            "resize",
-            function() {
-
-                const margin = 12;
+});
 
 
-                const rect =
-                    noButton.getBoundingClientRect();
+/* =========================
+   YES BUTTON
+========================= */
+
+yesBtn.addEventListener("click", function() {
+
+    page1.style.display = "none";
+    page2.style.display = "block";
+
+    /*
+       Hide No when entering page 2
+    */
+    noBtn.style.display = "none";
+
+});
 
 
-                const width =
-                    rect.width;
+/* =========================
+   WINDOW RESIZE
+========================= */
+
+window.addEventListener("resize", function() {
+
+    if (page1.style.display !== "none") {
+        setInitialNoPosition();
+    }
+
+});
 
 
-                const height =
-                    rect.height;
+/* =========================
+   WAIT FOR IMAGE / LAYOUT
+========================= */
 
+window.addEventListener("load", function() {
 
-                const maxX =
-                    window.innerWidth -
-                    width -
-                    margin;
+    setTimeout(function() {
+        setInitialNoPosition();
+    }, 100);
 
+});
 
-                const maxY =
-                    window.innerHeight -
-                    height -
-                    margin;
-
-
-                let x =
-                    parseFloat(
-                        noButton.style.left
-                    ) || margin;
-
-
-                let y =
-                    parseFloat(
-                        noButton.style.top
-                    ) || margin;
-
-
-                x =
-                    Math.max(
-                        margin,
-                        Math.min(x, maxX)
-                    );
-
-
-                y =
-                    Math.max(
-                        margin,
-                        Math.min(y, maxY)
-                    );
-
-
-                noButton.style.left =
-                    x + "px";
-
-
-                noButton.style.top =
-                    y + "px";
-
-            }
-        );
-
-    </script>
+</script>
 
 </body>
-
 </html>
